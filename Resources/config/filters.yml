@@ -1,0 +1,15 @@
+parameters:
+    cisco.filter.config:
+        example:
+            exportable: false
+            persistent: false
+            filters:
+                aFiscalYearFilter:
+                    type: fiscalyear
+                    accesslevel: 1
+                aFiscalPeriodFilter:
+                    type: fiscalperiod
+                    accesslevel: 1
+                aCustomFilter:
+                    type: custom
+                    accesslevel: 1

@@ -1,0 +1,16 @@
+parameters:
+    cisco.filter.class: CiscoSystems\FilterBundle\FilterService
+    cisco.filter.custom.class: CiscoSystems\FilterBundle\Filter\CustomFilter
+    cisco.filter.year.class: CiscoSystems\FilterBundle\Filter\YearFilter
+    cisco.filter.month.class: CiscoSystems\FilterBundle\Filter\MonthFilter
+
+services:
+    cisco.filter.custom:
+        class: '%cisco.filter.custom.class%'
+    cisco.filter.year:
+        class: '%cisco.filter.year.class%'
+    cisco.filter.month:
+        class: '%cisco.filter.month.class%'
+    cisco.filter:
+        class: '%cisco.filter.class%'
+#        arguments: [@service_id, "plain_value", %parameter%]

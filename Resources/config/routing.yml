@@ -1,0 +1,4 @@
+cisco_systems_filter_testpage:
+    path:  /
+    defaults:
+        _controller: CiscoSystemsFilterBundle:Default:index
