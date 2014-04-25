@@ -4,11 +4,11 @@ parameters:
             exportable: false
             persistent: false
             filters:
-                aFiscalYearFilter:
-                    type: fiscalyear
+                aYearFilter:
+                    type: year
                     accesslevel: 1
-                aFiscalPeriodFilter:
-                    type: fiscalperiod
+                aMonthFilter:
+                    type: month
                     accesslevel: 1
                 aCustomFilter:
                     type: custom

@@ -10,8 +10,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $dep = new FilterDependency();
-        $dep->setType( FilterDependency::TYPE_DISABLE );
+//         $dep = new FilterDependency();
+//         $dep->setType( FilterDependency::TYPE_DISABLE );
         return $this->render( 'CiscoSystemsFilterBundle:Default:index.html.twig' );
     }
 }

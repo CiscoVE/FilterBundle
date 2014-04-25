@@ -10,10 +10,12 @@ use CiscoSystems\FilterBundle\Filter\AbstractFilter;
 class CustomFilter extends AbstractFilter
 {
     /**
-     * @see \CiscoSystems\FilterBundle\Model\FilterInterface::getType()
+     * {@inheritDoc}
+     *
+     * @see \CiscoSystems\FilterBundle\Model\FilterInterface::load()
      */
-    public function getType()
+    public function load()
     {
-        return "custom";
+        // TODO: load filter options
     }
 }
