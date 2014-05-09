@@ -19,4 +19,5 @@ services:
           - { name: cisco.filtertype, alias: month }
     cisco.filter:
         class: '%cisco.filter_service.class%'
-#        arguments: [@service_id, "plain_value", %parameter%]
+        arguments:
+            - '%cisco.filter.config%'

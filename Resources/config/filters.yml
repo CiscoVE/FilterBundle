@@ -6,10 +6,11 @@ parameters:
             filters:
                 aYearFilter:
                     type: year
-                    accesslevel: 1
+                    access_control:
+                        role:
+                            show: [ ROLE_ADMIN ]
+                            enable: [ ROLE_ADMIN ]
                 aMonthFilter:
                     type: month
-                    accesslevel: 1
                 aCustomFilter:
                     type: custom
-                    accesslevel: 1

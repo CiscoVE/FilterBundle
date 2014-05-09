@@ -6,11 +6,13 @@ use CiscoSystems\FilterBundle\Model\FilterInterface;
 
 class FilterService
 {
+    protected $configuration;
     protected $filterClasses;
 
-    public function __construct()
+    public function __construct( array $configuration = array() )
     {
-        $this->$filterClasses = array();
+        $this->configuration = $configuration;
+        $this->filterClasses = array();
     }
 
     /**
@@ -26,6 +28,11 @@ class FilterService
      */
     public function addFilterClass( $alias, $className )
     {
-        $this->$filterClasses[$alias] = $className;
+        $this->filterClasses[$alias] = $className;
+    }
+
+    public function getConfiguration()
+    {
+        return $this->configuration;
     }
 }
