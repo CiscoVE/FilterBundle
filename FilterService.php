@@ -76,7 +76,7 @@ class FilterService extends ContainerAware
             {
                 throw new \Exception( "Filter access control service alias undefined: " . $accessControlAlias );
             }
-            $accessControl = $this->container->get( $this->filterClasses[$accessControlAlias] );
+            $accessControl = $this->container->get( $this->accessControlChain[$accessControlAlias] );
             $filter->setDisplayed( $accessControl->display( $filter, $accessControlConfig ));
             $filter->setEnabled( $accessControl->enable( $filter, $accessControlConfig ));
         }
