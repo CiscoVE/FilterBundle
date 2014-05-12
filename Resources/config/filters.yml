@@ -4,13 +4,15 @@ parameters:
             exportable: false
             persistent: false
             filters:
-                aYearFilter:
-                    type: year
-                    access_control:
-                        role:
-                            show: [ ROLE_ADMIN ]
-                            enable: [ ROLE_ADMIN ]
-                aMonthFilter:
-                    type: month
-                aCustomFilter:
-                    type: custom
+                timeFilters: # first filter group
+                    aYearFilter: # first filter in group
+                        type: year # type of filter
+                        access_control: # access control mechanisms used
+                            role:         # role access control
+                                show: [ ROLE_ADMIN ]   # show only to admins
+                                enable: [ ROLE_ADMIN ] # enable use only for admins
+                    aMonthFilter: # second filter in filter group
+                        type: month
+                someOtherFilters: # second filter group
+                    aCustomFilter:
+                        type: custom

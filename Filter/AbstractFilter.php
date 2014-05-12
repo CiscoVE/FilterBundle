@@ -52,11 +52,18 @@ abstract class AbstractFilter implements FilterInterface
     protected $multiple;
 
     /**
-     * Access level required to use this filter
+     * Whether this filter is to be displayed
      *
-     * @var integer
+     * @var boolean
      */
-    protected $accessLevel;
+    protected $displayed;
+
+    /**
+     * Whether this filter is to be enabled or disabled
+     *
+     * @var boolean
+     */
+    protected $enabled;
 
     /**
      * Constructor
@@ -68,6 +75,8 @@ abstract class AbstractFilter implements FilterInterface
         $this->options = array();
         $this->dependants = array();
         $this->dependencies = array();
+        $this->displayed = true;
+        $this->enabled = true;
     }
 
     /**
@@ -185,22 +194,40 @@ abstract class AbstractFilter implements FilterInterface
     }
 
     /**
-     * @return integer
+     * @return boolean
      */
-    public function getAccessLevel()
+    public function getDisplayed()
     {
-        return $this->accessLevel;
+        return $this->displayed;
     }
 
     /**
-     * @param integer $accessLevel
+     * @param boolean $displayed
      *
      * @return \CiscoSystems\FilterBundle\Filter\AbstractFilter
      */
-    public function setAccessLevel( $accessLevel )
+    public function setDisplayed( $displayed )
     {
-        $this->accessLevel = $accessLevel;
+        $this->displayed = $displayed;
         return $this;
     }
 
+    /**
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param boolean $enabled
+     *
+     * @return \CiscoSystems\FilterBundle\Filter\AbstractFilter
+     */
+    public function setEnabled( $enabled )
+    {
+        $this->enabled = $enabled;
+        return $this;
+    }
 }

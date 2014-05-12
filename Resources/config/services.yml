@@ -3,21 +3,31 @@ parameters:
     cisco.filter.custom.class: CiscoSystems\FilterBundle\Filter\CustomFilter
     cisco.filter.year.class: CiscoSystems\FilterBundle\Filter\YearFilter
     cisco.filter.month.class: CiscoSystems\FilterBundle\Filter\MonthFilter
+    cisco.filter_access.role.class: CiscoSystems\FilterBundle\Access\FilterAccessRole
 
 services:
-    cisco.filter.custom:
-        class: '%cisco.filter.custom.class%'
-        tags:
-          - { name: cisco.filtertype, alias: custom }
-    cisco.filter.year:
-        class: '%cisco.filter.year.class%'
-        tags:
-          - { name: cisco.filtertype, alias: year }
-    cisco.filter.month:
-        class: '%cisco.filter.month.class%'
-        tags:
-          - { name: cisco.filtertype, alias: month }
+    # main service
     cisco.filter:
         class: '%cisco.filter_service.class%'
         arguments:
             - '%cisco.filter.config%'
+        calls:
+            - [ setContainer, [ '@service_container' ]]
+    # some default filter types
+    cisco.filter.custom:
+        class: '%cisco.filter.custom.class%'
+        tags:
+          - { name: cisco.filter.filtertype, alias: custom }
+    cisco.filter.year:
+        class: '%cisco.filter.year.class%'
+        tags:
+          - { name: cisco.filter.filtertype, alias: year }
+    cisco.filter.month:
+        class: '%cisco.filter.month.class%'
+        tags:
+          - { name: cisco.filter.filtertype, alias: month }
+    # some default access control
+    cisco.filter_access.role:
+        class: '%cisco.filter_access.role.class%'
+        tags:
+          - { name: cisco.filter.filteraccess, alias: role }

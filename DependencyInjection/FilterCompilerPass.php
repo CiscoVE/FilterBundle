@@ -20,19 +20,30 @@ class FilterCompilerPass implements CompilerPassInterface
 
     public function process( ContainerBuilder $container )
     {
-        // Filter type service definitions
+        // Get main filter service definition
         if ( !$container->hasDefinition( 'cisco.filter' )) return;
         $definition = $container->getDefinition( 'cisco.filter' );
-        $taggedServices = $container->findTaggedServiceIds( 'cisco.filtertype' );
+        // Get filter type service definitions
+        $taggedServices = $container->findTaggedServiceIds( 'cisco.filter.filtertype' );
         foreach ( $taggedServices as $serviceId => $attributes )
         {
-            $class = $this->getFilterClassName( $container, $serviceId, $attributes );
+            $class = $this->getServiceClassName( $container, $serviceId, $attributes );
             $definition->addMethodCall(
                 'addFilterClass',
                 array( $attributes[0]['alias'], $class )
             );
         }
-        // Filter configurations
+        // Get filter access control service definitions
+        $taggedServices = $container->findTaggedServiceIds( 'cisco.filter.filteraccess' );
+        foreach ( $taggedServices as $serviceId => $attributes )
+        {
+            $this->getServiceClassName( $container, $serviceId, $attributes ); // call only to check for valid alias
+            $definition->addMethodCall(
+                'addFilterAccessControlService',
+                array( $attributes[0]['alias'], $serviceId )
+            );
+        }
+        // Read filter configurations
         $config = $this->getFilterConfigurations();
         $container->setParameter( $this->parameter, $config );
 //         echo '<pre>';
@@ -50,11 +61,11 @@ class FilterCompilerPass implements CompilerPassInterface
      * @throws \Exception
      * @return string
      */
-    protected function getFilterClassName( ContainerBuilder $container, $serviceId, array $attributes )
+    protected function getServiceClassName( ContainerBuilder $container, $serviceId, array $attributes )
     {
         if ( count( $attributes ) < 1 || !array_key_exists( 'alias', $attributes[0] ))
         {
-            throw new \Exception( "Filter type service definition invalid, requires 'alias' tag." );
+            throw new \Exception( "Service definition invalid, requires 'alias' tag." );
         }
         $class = $container->getDefinition( $serviceId )->getClass();
         if ( false !== strpos( $class, '%' ))
