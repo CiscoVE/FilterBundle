@@ -1,8 +1,7 @@
 parameters:
     cisco.filter.config:
         example:
-            exportable: false
-            persistent: false
+            persistent: false # whether or not this filter is persistent across non-successive HTTP requests
             filters:
                 timeFilters: # first filter group
                     aYearFilter: # first filter in group

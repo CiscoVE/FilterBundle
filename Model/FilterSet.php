@@ -22,14 +22,7 @@ class FilterSet
     protected $filterGroups;
 
     /**
-     * Whether or not this filter set should offer an export option
-     *
-     * @var boolean
-     */
-    protected $exportable;
-
-    /**
-     * Whether or not this filter set should persist its state between HTTP GET requests
+     * Whether or not this filter set should persist its state across non-successive HTTP requests
      *
      * @var boolean
      */
@@ -89,25 +82,6 @@ class FilterSet
     public function getFilterGroups()
     {
         return $this->filterGroups;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getExportable()
-    {
-        return $this->exportable;
-    }
-
-    /**
-     * @param boolean $exportable
-     *
-     * @return \CiscoSystems\FilterBundle\Model\FilterSet
-     */
-    public function setExportable( $exportable = false )
-    {
-        $this->exportable = $exportable;
-        return $this;
     }
 
     /**
