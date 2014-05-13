@@ -35,7 +35,6 @@ class FilterSet
     {
         $this->name = "";
         $this->filterGroups = array();
-        $this->exportable = false;
         $this->persistent = false;
     }
 
