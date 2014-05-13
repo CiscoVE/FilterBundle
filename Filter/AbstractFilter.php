@@ -92,7 +92,7 @@ abstract class AbstractFilter implements FilterInterface
      *
      * @return \CiscoSystems\FilterBundle\Filter\AbstractFilter
      */
-    public function setName( string $name )
+    public function setName( $name )
     {
         $this->name = $name;
         return $this;
@@ -111,7 +111,7 @@ abstract class AbstractFilter implements FilterInterface
      *
      * @return \CiscoSystems\FilterBundle\Filter\AbstractFilter
      */
-    public function setLabel( string $label )
+    public function setLabel( $label )
     {
         $this->label = $label;
         return $this;

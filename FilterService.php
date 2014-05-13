@@ -61,7 +61,7 @@ class FilterService extends ContainerAware
      *
      * @return \CiscoSystems\FilterBundle\Model\FilterInterface
      */
-    public function createFilter( string $name = "", array $config = array() )
+    public function createFilter( $name = "", array $config = array() )
     {
         // instantiate filter objects according to set config
         $filterType = $config['type'];

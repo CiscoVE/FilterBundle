@@ -33,7 +33,7 @@ class FilterGroup
      *
      * @return \CiscoSystems\FilterBundle\Model\FilterGroup
      */
-    public function setName( string $name )
+    public function setName( $name )
     {
         $this->name = $name;
         return $this;

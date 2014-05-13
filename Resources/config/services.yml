@@ -29,5 +29,7 @@ services:
     # some default access control
     cisco.filter_access.role:
         class: '%cisco.filter_access.role.class%'
+        arguments:
+            - '@security.context'
         tags:
           - { name: cisco.filter.filteraccess, alias: role }

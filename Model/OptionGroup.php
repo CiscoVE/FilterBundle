@@ -34,7 +34,7 @@ class OptionGroup
      *
      * @return \CiscoSystems\FilterBundle\Model\OptionGroup
      */
-    public function setName( string $name )
+    public function setName( $name )
     {
         $this->name = $name;
         return $this;
@@ -53,7 +53,7 @@ class OptionGroup
      *
      * @return \CiscoSystems\FilterBundle\Model\OptionGroup
      */
-    public function setLabel( string $label )
+    public function setLabel( $label )
     {
         $this->label = $label;
         return $this;

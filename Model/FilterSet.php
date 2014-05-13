@@ -54,7 +54,7 @@ class FilterSet
      *
      * @return \CiscoSystems\FilterBundle\Model\FilterSet
      */
-    public function addFilter( FilterInterface $filter, string $groupName = "" )
+    public function addFilter( FilterInterface $filter, $groupName = "" )
     {
         if ( !array_key_exists( $groupName, $this->filterGroups ))
         {
@@ -77,7 +77,7 @@ class FilterSet
      *
      * @return \CiscoSystems\FilterBundle\Model\FilterSet
      */
-    public function setName( string $name = "" )
+    public function setName( $name = "" )
     {
         $this->name = $name;
         return $this;

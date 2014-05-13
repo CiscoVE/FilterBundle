@@ -2,16 +2,23 @@
 
 namespace CiscoSystems\FilterBundle\Access;
 
+use Symfony\Component\Security\Core\SecurityContext;
 use CiscoSystems\FilterBundle\Model\FilterInterface;
 use CiscoSystems\FilterBundle\Access\FilterAccessInterface;
 
 class FilterAccessRole implements FilterAccessInterface
 {
     /**
+     * @var \Symfony\Component\Security\Core\SecurityContext
+     */
+    protected $securityContext;
+
+    /**
      * Constructor
      */
-    public function __construct()
+    public function __construct( SecurityContext $securityContext )
     {
+        $this->securityContext = $securityContext;
     }
 
     /**
@@ -21,8 +28,11 @@ class FilterAccessRole implements FilterAccessInterface
      */
     public function display( FilterInterface $filter, array $config = array(), $default = NULL )
     {
-        // TODO
-        return true;
+        foreach ( $config["display"] as $role )
+        {
+            if ( $this->securityContext->isGranted( $role )) return true;
+        }
+        return false;
     }
 
     /**
@@ -32,7 +42,10 @@ class FilterAccessRole implements FilterAccessInterface
      */
     public function enable( FilterInterface $filter, array $config = array(), $default = NULL )
     {
-        // TODO
-        return true;
+        foreach ( $config["enable"] as $role )
+        {
+            if ( $this->securityContext->isGranted( $role )) return true;
+        }
+        return false;
     }
 }

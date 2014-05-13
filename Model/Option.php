@@ -27,7 +27,7 @@ class Option
      *
      * @return \CiscoSystems\FilterBundle\Model\Option
      */
-    public function setValue( string $value )
+    public function setValue( $value )
     {
         $this->value = $value;
         return $this;
@@ -46,7 +46,7 @@ class Option
      *
      * @return \CiscoSystems\FilterBundle\Model\Option
      */
-    public function setLabel( string $label )
+    public function setLabel( $label )
     {
         $this->label = $label;
         return $this;
