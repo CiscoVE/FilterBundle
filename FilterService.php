@@ -37,7 +37,6 @@ class FilterService extends ContainerAware
         {
             if ( $filterSetName != $name ) continue;
             $filterSet = new FilterSet();
-            $filterSet->setExportable( $configuration['exportable'] );
             $filterSet->setPersistent( $configuration['persistent'] );
             $filterGroupConfigs = $configuration['filters'];
             foreach ( $filterGroupConfigs as $filterGroupName => $filterGroupConfig )
@@ -81,6 +80,7 @@ class FilterService extends ContainerAware
                 $accessControl = $this->container->get( $this->accessControlChain[$accessControlAlias] );
                 $filter->setDisplayed( $accessControl->display( $filter, $accessControlConfig ));
                 $filter->setEnabled( $accessControl->enable( $filter, $accessControlConfig ));
+                // TODO: don't set it directly, make an AND/OR policy configurable instead (for multiple mechanisms)
             }
         }
         // return filter object
