@@ -13,7 +13,7 @@ class DefaultController extends Controller
         echo '<pre>';
         print_r( $this->get( 'cisco.filter' )->getConfiguration() );
         echo '</pre>';
-        $filterSet = $this->get( 'cisco.filter' )->get( 'example' );
+        $filterSet = $this->get( 'cisco.filter' )->get( 'appfiltertest' );
         $groups = $filterSet->getFilterGroups();
         foreach ( $groups as $group )
         {

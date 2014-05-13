@@ -28,6 +28,7 @@ class FilterAccessRole implements FilterAccessInterface
      */
     public function display( FilterInterface $filter, array $config = array(), $default = NULL )
     {
+        if ( !array_key_exists( "display", $config )) return true;
         foreach ( $config["display"] as $role )
         {
             if ( $this->securityContext->isGranted( $role )) return true;
@@ -42,6 +43,7 @@ class FilterAccessRole implements FilterAccessInterface
      */
     public function enable( FilterInterface $filter, array $config = array(), $default = NULL )
     {
+        if ( !array_key_exists( "enable", $config )) return true;
         foreach ( $config["enable"] as $role )
         {
             if ( $this->securityContext->isGranted( $role )) return true;
