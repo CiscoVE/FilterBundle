@@ -10,7 +10,9 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-//         echo '<pre>';
+        echo '<pre>';
+        print_r( $this->get( 'cisco.filter' )->getConfiguration() );
+        echo '</pre>';
         $filterSet = $this->get( 'cisco.filter' )->get( 'example' );
         $groups = $filterSet->getFilterGroups();
         foreach ( $groups as $group )
@@ -18,11 +20,9 @@ class DefaultController extends Controller
             echo '<p>' . $group->getName() . '</p>';
             foreach ( $group->getFilters() as $filter )
             {
-                echo '<p>' . $filter->getName() . '</p>';
+                echo '<p>' . $filter->getName() . ' - enabled: ' . ( $filter->getEnabled() ? 'yes' : 'no' ) . '</p>';
             }
         }
-        //print_r( $srv->getConfiguration() );
-//         echo '</pre>';
         die(); exit;
 //         $dep = new FilterDependency();
 //         $dep->setType( FilterDependency::TYPE_DISABLE );
