@@ -39,7 +39,7 @@ class FilterService extends ContainerAware
             $filterSet = new FilterSet();
             $filterSet->setExportable( $configuration['exportable'] );
             $filterSet->setPersistent( $configuration['persistent'] );
-            $filterConfigs = $configuration['filters'];
+            $filterGroupConfigs = $configuration['filters'];
             foreach ( $filterGroupConfigs as $filterGroupName => $filterGroupConfig )
             {
                 foreach ( $filterGroupConfig as $filterName => $filterConfig )
@@ -69,16 +69,19 @@ class FilterService extends ContainerAware
         $filter = new $filterClass();
         $filter->setName( $name );
         // check registered access control services for each filter
-        $accessControlConfigs = $config['access_control'];
-        foreach ( $config['access_control'] as $accessControlAlias => $accessControlConfig )
+        if ( array_key_exists( 'access_control', $config ))
         {
-            if ( !array_key_exists( $accessControlAlias, $this->accessControlChain ))
+            $accessControlConfigs = $config['access_control'];
+            foreach ( $config['access_control'] as $accessControlAlias => $accessControlConfig )
             {
-                throw new \Exception( "Filter access control service alias undefined: " . $accessControlAlias );
+                if ( !array_key_exists( $accessControlAlias, $this->accessControlChain ))
+                {
+                    throw new \Exception( "Filter access control service alias undefined: " . $accessControlAlias );
+                }
+                $accessControl = $this->container->get( $this->accessControlChain[$accessControlAlias] );
+                $filter->setDisplayed( $accessControl->display( $filter, $accessControlConfig ));
+                $filter->setEnabled( $accessControl->enable( $filter, $accessControlConfig ));
             }
-            $accessControl = $this->container->get( $this->accessControlChain[$accessControlAlias] );
-            $filter->setDisplayed( $accessControl->display( $filter, $accessControlConfig ));
-            $filter->setEnabled( $accessControl->enable( $filter, $accessControlConfig ));
         }
         // return filter object
         return $filter;

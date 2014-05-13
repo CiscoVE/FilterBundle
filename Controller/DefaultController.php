@@ -10,10 +10,19 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        echo '<pre>';
-        $srv = $this->get( 'cisco.filter' );
-        print_r( $srv->getConfiguration() );
-        echo '</pre>';
+//         echo '<pre>';
+        $filterSet = $this->get( 'cisco.filter' )->get( 'example' );
+        $groups = $filterSet->getFilterGroups();
+        foreach ( $groups as $group )
+        {
+            echo '<p>' . $group->getName() . '</p>';
+            foreach ( $group->getFilters() as $filter )
+            {
+                echo '<p>' . $filter->getName() . '</p>';
+            }
+        }
+        //print_r( $srv->getConfiguration() );
+//         echo '</pre>';
         die(); exit;
 //         $dep = new FilterDependency();
 //         $dep->setType( FilterDependency::TYPE_DISABLE );

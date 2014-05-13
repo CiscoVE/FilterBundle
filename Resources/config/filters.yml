@@ -9,8 +9,8 @@ parameters:
                         type: year # type of filter
                         access_control: # access control mechanisms used
                             role:         # role access control
-                                display: [ ROLE_ADMIN ]   # show only to admins
-                                enable: [ ROLE_ADMIN ] # enable use only for admins
+                                display: [ ROLE_ADMINs ]   # show only to admins
+                                enable: [ ROLE_ADMINs ] # enable use only for admins
                     aMonthFilter: # second filter in filter group
                         type: month
                 someOtherFilters: # second filter group
