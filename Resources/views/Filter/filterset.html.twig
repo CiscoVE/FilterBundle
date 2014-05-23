@@ -1,0 +1,14 @@
+
+    {% for group in filterSet.filterGroups %}
+        <p>{{ group.name }}</p>
+        {% for filter in group.filters %}
+
+            <p>
+                {{ filter.name }}
+                - enabled: {% if filter.enabled %}yes{% else %}no{% endif %}
+                - label: {{ filter.label }}
+                {#- type: {{ filter.type }}#}
+            </p>
+
+        {% endfor %}
+    {% endfor %}

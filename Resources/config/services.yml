@@ -3,6 +3,7 @@ parameters:
     cisco.filter.custom.class: CiscoSystems\FilterBundle\Filter\CustomFilter
     cisco.filter.year.class: CiscoSystems\FilterBundle\Filter\YearFilter
     cisco.filter.month.class: CiscoSystems\FilterBundle\Filter\MonthFilter
+    cisco.twig.filter_extension.class: CiscoSystems\FilterBundle\Twig\Extension\FilterExtension
     cisco.filter_access.role.class: CiscoSystems\FilterBundle\Access\FilterAccessRole
 
 services:
@@ -26,6 +27,14 @@ services:
         class: '%cisco.filter.month.class%'
         tags:
           - { name: cisco.filter.filtertype, alias: month }
+    # Twig extension
+    cisco.twig.filter.extension:
+        class: '%cisco.twig.filter_extension.class%'
+        arguments:
+            - '@cisco.filter'
+            - '@twig'
+        tags:
+            - { name: twig.extension }
     # some default access control
     cisco.filter_access.role:
         class: '%cisco.filter_access.role.class%'

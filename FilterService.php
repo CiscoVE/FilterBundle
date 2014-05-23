@@ -55,18 +55,22 @@ class FilterService extends ContainerAware
     /**
      * Instantiate a filter according to config
      *
-     * @param string $name
+     * @param string $filterName
      * @param array $config
      *
      * @return \CiscoSystems\FilterBundle\Model\FilterInterface
      */
-    public function createFilter( $name = "", array $config = array() )
+    public function createFilter( $filterName = "", array $config = array() )
     {
+//         print_r( $config );
+//         die(); exit;
         // instantiate filter objects according to set config
+        if ( !array_key_exists( 'type', $config )) throw new \Exception( "Configuration option 'type' must be set for filter!" );
         $filterType = $config['type'];
         $filterClass = $this->filterClasses[$filterType];
         $filter = new $filterClass();
-        $filter->setName( $name );
+        $filter->setName( $filterName );
+        if ( array_key_exists( 'label', $config )) $filter->setLabel( $config['label'] );
         // check registered access control services for each filter
         if ( array_key_exists( 'access_control', $config ))
         {
